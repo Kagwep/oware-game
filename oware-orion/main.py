@@ -34,14 +34,17 @@ def check_seeds_in_houses(houses,player_houses):
 
       return total_seeds
 
-def check_sow_move(index_of_house, house_index,number_of_seeds):
+def check_sow_move(index_of_first_house, house_index,number_of_seeds):
+      '''
+      This function will return True if the sow move is valid and False if it doesnt
+      '''
 
       valid_sum = house_index + number_of_seeds
 
-      if index_of_house > 5 and valid_sum > 12:
+      if index_of_first_house > 5 and valid_sum >= 12:
             return True
       
-      elif (index_of_house >= 0 and index_of_house <=5 ) and valid_sum > 6:
+      elif (index_of_first_house >= 0 and index_of_first_house <=5 ) and valid_sum >= 6:
             return True
       
       else:
@@ -49,6 +52,11 @@ def check_sow_move(index_of_house, house_index,number_of_seeds):
             return False
             
 def opponent_have_seed(house_name,house,houses_list,opponent_seeds,player):
+
+      '''
+      This functions finds out whether by selecting the house and seeds to sow. Opponent will recieve atleaset one
+      seed if opponent  has no seeds as per the ruoles.
+      '''
 
       if opponent_seeds > 0:
             return True
@@ -62,13 +70,20 @@ def opponent_have_seed(house_name,house,houses_list,opponent_seeds,player):
 
             house_seeds = len(house['seeds'])
 
-            check_sow_move(first_house_index , house_index,house_seeds)
+            check_sow_move(first_house_index ,house_index,house_seeds)
    
 
 def select_house(player,houses,opponent,houses_list):
       houses_list = houses_list[::-1]
       print("Your houses: ",Fore.BLUE,player.houses,Style.RESET_ALL)
-      number_of_house = int(input(f"{Fore.LIGHTGREEN_EX}Enter number of house to pick seeds:{Style.RESET_ALL} "))
+      
+      try:
+            number_of_house = int(input(f"{Fore.LIGHTGREEN_EX}Enter number of house to pick seeds:{Style.RESET_ALL} "))
+      except ValueError:
+            print(f"{Back.RED}Please enter a valid number.{Style.RESET_ALL}")
+            select_house(player,houses,opponent,houses_list)
+
+
       number =is_valid(number_of_house)
       
 
@@ -85,10 +100,10 @@ def select_house(player,houses,opponent,houses_list):
                   return house_name
             else:
                   print(f"{Fore.RED}Please select house in your houses with seed(s){Style.RESET_ALL}")
-                  return select_house(player,houses)
+                  return select_house(player,houses,opponent,houses_list)
       
       else:
-            return select_house(player,houses)
+            return select_house(player,houses,opponent,houses_list)
 
 
 
@@ -134,7 +149,8 @@ def oware():
             print("Its your turn ",Fore.YELLOW,game_state.players_turn,Style.RESET_ALL)
             print("Captured: ",Fore.LIGHTCYAN_EX,player.captured,Style.RESET_ALL)
       else:
-            print(player.name + "  has won!")
+            print(Back.YELLOW,player.name + "  has won!",Style.RESET_ALL)
+            print(Back.MAGENTA,"Captured: ",Back.LIGHTGREEN_EX,player.captured,Style.RESET_ALL)
             print(game_houses.print_houses())
             game_state.inplay = False
 

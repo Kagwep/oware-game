@@ -2,6 +2,12 @@
 from state import State
 from player import Player
 
+from colorama import init as colorama_init
+from colorama import Fore,Back
+from colorama import Style
+
+colorama_init()
+
 class Play(State,Player):
 
 
@@ -25,9 +31,9 @@ class Play(State,Player):
 
 
 
-    def check_capture_move(self,last_house,opponent):
+    def check_capture_move(self,last_house,house,opponent):
 
-        if last_house['seeds_number'] == 3 or last_house['seeds_number'] == 2:
+        if (last_house['seeds_number'] == 3 or last_house['seeds_number'] == 2) and house in opponent.houses:
             return True
         else:
             return False
@@ -41,7 +47,7 @@ class Play(State,Player):
 
         check_house = self.houses_dict[check_house]
 
-        check = self.check_capture_move(check_house,opponent)
+        check = self.check_capture_move(check_house,check_house_name,opponent)
 
         if check:
 
@@ -52,7 +58,7 @@ class Play(State,Player):
             house_captured['seeds'] = []
             house_captured['seeds_number'] = 0
 
-            self.houses_dict[check_house] = house_captured
+            self.houses_dict[check_house_name] = house_captured
 
 
             self.capture_previous_house(previous_house,player,opponent)
@@ -123,11 +129,12 @@ class Play(State,Player):
             self.houses_dict[sliced_house] = house_new
             capture = False
 
-            if seed_index == 3 and sliced_house not in player.houses:
-                capture = self.check_capture_move(house_new,opponent)
+            if seed_index == (len(sliced_houses)-1) and sliced_house in opponent.houses:
+                capture = self.check_capture_move(house_new,sliced_house,opponent)
 
 
             if capture:
+                print(f"{Back.GREEN}Capture!{Style.RESET_ALL}")
                 house_captured = self.houses_dict[sliced_house]
 
                 seeds_captured = house_captured['seeds_number']
