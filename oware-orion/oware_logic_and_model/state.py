@@ -1,9 +1,12 @@
 class State:
-    def __init__(self,inplay,player_one,player_two,player):
+    def __init__(self,inplay,player_one,player_two,player,board_state):
         self.inplay = inplay
         self.player_one = player_one
         self.player_two = player_two
         self.players_turn = player
+        self.board_state = board_state
+        self.winner = ''
+        self.draw = False
         
         
     def get_player_one_info(self):

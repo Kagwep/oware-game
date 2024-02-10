@@ -66,7 +66,7 @@ class Play(State,Player):
         
         
 
-    def make_move(self,house_picked,valid_player,valid_pick,player,opponent):
+    def make_move(self,house_picked,valid_player,valid_pick,player,opponent,game_state):
 
         house = house_picked
         house_name = house_picked
@@ -88,22 +88,28 @@ class Play(State,Player):
 
         sliced_houses = []
 
-        for i in range(1,num_elements+1):
+        houses_ordered_list = houses_list.copy()
 
-            sum_plus_index = houses_to_play + i
-            if sum_plus_index > 12:
-                new_index = sum_plus_index - 12
-                new_house = houses_list[new_index]
-                sliced_houses.append(new_house)
+        for i in range(num_elements):
+
+            houses_to_play= (houses_to_play + 1) % len(houses_ordered_list)
+            new_house = houses_list[houses_to_play]
+            sliced_houses.append(new_house)
+
+            # sum_plus_index = houses_to_play + i
+            # if sum_plus_index > 12:
+            #     new_index = sum_plus_index - 12
+            #     new_house = houses_list[new_index]
+            #     sliced_houses.append(new_house)
 
 
-            elif sum_plus_index == 12:
-                new_house = houses_list[0]
-                sliced_houses.append(new_house)
+            # elif sum_plus_index == 12:
+            #     new_house = houses_list[0]
+            #     sliced_houses.append(new_house)
 
-            else:
-                new_house =houses_list[i+houses_to_play]
-                sliced_houses.append(new_house)
+            # else:
+            #     new_house =houses_list[i+houses_to_play]
+            #     sliced_houses.append(new_house)
         
 
         seed_index = 0
@@ -151,16 +157,22 @@ class Play(State,Player):
 
 
         player.captured += seeds_captured
+        self.game_state = self.houses_dict
 
 
         if player.captured > 24:
             return player.name
         
+        elif player.captured == opponent.captured == 24:
+            return 'draw'
+        
         else:
-            if self.game_state.player_one.name == player.name:
-                self.game_state.players_turn =  self.game_state.player_two.name
+            print(game_state.state_info())
+            print(player.name)
+            if game_state.player_one.name == player.name:
+                game_state.players_turn =  game_state.player_two.name
             else:
-                self.game_state.players_turn =  self.game_state.player_one.name
+                game_state.players_turn =  game_state.player_one.name
             
             return 'game_on'
 
