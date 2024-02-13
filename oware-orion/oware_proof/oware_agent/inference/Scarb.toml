@@ -1,0 +1,18 @@
+[package]
+name = "inference"
+version = "0.1.0"
+edition = "2023_10"
+
+[dependencies]
+starknet = "2.0.2"
+node_sequential_99_dense_299_matmul_readvariableop_0 = { path = "../initializers/node_sequential_99_dense_299_matmul_readvariableop_0"} 
+node_sequential_99_dense_299_biasadd_readvariableop_0 = { path = "../initializers/node_sequential_99_dense_299_biasadd_readvariableop_0"} 
+node_sequential_99_dense_298_matmul_readvariableop_0 = { path = "../initializers/node_sequential_99_dense_298_matmul_readvariableop_0"} 
+node_sequential_99_dense_298_biasadd_readvariableop_0 = { path = "../initializers/node_sequential_99_dense_298_biasadd_readvariableop_0"} 
+node_sequential_99_dense_297_matmul_readvariableop_0 = { path = "../initializers/node_sequential_99_dense_297_matmul_readvariableop_0"} 
+node_sequential_99_dense_297_biasadd_readvariableop_0 = { path = "../initializers/node_sequential_99_dense_297_biasadd_readvariableop_0"} 
+orion = { git = "https://github.com/gizatechxyz/orion.git", rev = "8ff7389" } 
+[lib]
+sierra-text = true
+
+[[target.starknet-contract]]

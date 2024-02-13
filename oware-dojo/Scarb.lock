@@ -2,9 +2,14 @@
 version = 1
 
 [[package]]
+name = "cubit"
+version = "1.3.0"
+source = "git+https://github.com/akhercha/cubit?rev=d3869a3f0c47e5ed229bbbfe2fce3fc0510cbc8a#d3869a3f0c47e5ed229bbbfe2fce3fc0510cbc8a"
+
+[[package]]
 name = "dojo"
-version = "0.5.0"
-source = "git+https://github.com/dojoengine/dojo#79278a62f66895cbe3bfaf822e3703309f8847b5"
+version = "0.4.1"
+source = "git+https://github.com/dojoengine/dojo?tag=v0.4.1#e0a16635d1b833e0f5b89a9bdf358d784751c1b4"
 dependencies = [
  "dojo_plugin",
 ]
@@ -18,5 +23,6 @@ source = "git+https://github.com/dojoengine/dojo?tag=v0.3.11#1e651b5d4d3b79b14a7
 name = "oware_dojo"
 version = "0.5.0"
 dependencies = [
+ "cubit",
  "dojo",
 ]

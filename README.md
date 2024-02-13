@@ -13,23 +13,16 @@ The  score houses acts as the destination for accumulated beads, while the six h
 
 ## Features
 
-- **Smart Contracts with Dojo**: The game logic is implemented as a smart contracts using Solidity, ensuring transparency and security.
+- **Smart Contracts with Dojo**: The game logic is implemented using dojo provable game engine.
 
-- **Argent**: The game leverages the Areon blockchain network, providing a decentralized infrastructure for secure and transparent transactions. Players can interact with the game using Argent.
+- **Giza Orion**: Framework dedicated to Provable Machine Learning. It provides essential components and a new ONNX runtime for building our Provable AI Oware Agent.
 
-- **3D Visualization with Babylon.js and Blender**: Immerse yourself in the Oware world with 3D visualization powered by Babylon.js. The models are created using Blender, ensuring a visually appealing and engaging gaming experience.
+- **3D Visualization with Babylon.js and Blender**: The Oware world with 3D visualization powered by Babylon.js. The models are created using Blender, ensuring a visually appealing and engaging gaming experience.
 
 - **OWR Token**: Oware introduces the OWR token, a digital asset within the game. Players can earn and trade OWR tokens as rewards for their achievements.
 
 ## Development Setup
 
-1. **Install Dependencies**: Run `npm install` to install the necessary dependencies.
-
-2. **Compile Contracts**: Use Hardhat to compile the Solidity smart contracts with `npx hardhat compile`.
-
-3. **Deploy Contracts**: Deploy the contracts to the Aerum network using `npx hardhat deploy`.
-
-4. **Run Locally**: Test the game locally with Hardhat Network or deploy it to a testnet `np`.
 
 ## How to Set-Up
 1. Oware is played on a board with 12 large play spaces (houses) around the outside of the board and one large score house for each player in the center.
@@ -85,7 +78,9 @@ Commence Gameplay:
 
 ## Technologies Used
 - Dojo
+- Giza Orion
 - Argent
+- Bravos
 - Babylon.js
 - Blender
 - OWR
