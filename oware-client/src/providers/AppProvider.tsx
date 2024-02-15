@@ -3,7 +3,7 @@ import { Contract } from 'starknet'
 import { connect, disconnect } from 'starknetkit'
 import { CONTRACT_ABI, CONTRACT_ADDRESS, PRAGMA_ABI, PRAGMA_CONTRACT_ADDRESS } from '../config/config'
 import { modals } from '@mantine/modals'
-import { Text } from '@mantine/core'
+import { Text,Button } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 
 const initialData = {
@@ -15,6 +15,7 @@ const initialData = {
     handleConnetWalletBtnClick: null as any,
     isSmallScreen: false,
     handleWalletDisconnect:null as any,
+    disconnectWallet:null as any,
 }
 
 export const AppContext = createContext(initialData)
@@ -114,6 +115,27 @@ const AppProvider = ({ children }: IAppProvider) => {
         console.log("clicked connect wallet")
         if (!account) {
             connectWallet();
+        }else {
+
+
+            
+            modals.openConfirmModal({
+        
+                title: 'Please confirm your action',
+                centered: true,
+                radius: "md",
+                children: (
+                    <Text size="sm">
+                        Are you sure you want to disconnect your account?
+                    </Text>
+                ),
+                labels: { confirm: 'Disconnect', cancel: 'Cancel' },
+                confirmProps: { radius: "md", variant: "light" },
+                cancelProps: { radius: "md", variant: "light" },
+                onCancel: () => { },
+                onConfirm: () => disconnectWallet(),
+            })
+
         }
     }
 
@@ -132,6 +154,7 @@ const AppProvider = ({ children }: IAppProvider) => {
         handleConnetWalletBtnClick,
         handleWalletDisconnect,
         isSmallScreen,
+        disconnectWallet,
     }), [account, contract, address, pragma_contract]);
 
     useEffect(() => {

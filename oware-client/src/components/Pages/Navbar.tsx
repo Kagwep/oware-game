@@ -12,7 +12,9 @@ const Navbar = () => {
       <div className='flex items-center justify-between'>
         {/* Logo */}
         <div className='pt-2'>
+          <Link to='/'>
           <img src={companyLogo} alt='' />
+          </Link>
         </div>
         {/* Menu Items */}
         <div className='hidden space-x-6 md:flex'>

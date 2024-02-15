@@ -35,6 +35,7 @@ import { start } from './GameState';
 import { v4 as uuidv4 } from 'uuid';
 import { ethers } from 'ethers';
 import { useWallet } from '../../../contexts/WalletContex';
+import { useAppContext } from '../../../providers/AppProvider';
 
 
 export interface Players {
@@ -85,11 +86,16 @@ interface Register {
 const Canvas:React.FC<CanvasProps> = ({ players, room,username,player_identity,cleanup }) => {
 
     const [over, setOver] = useState("");
+    const [overBool, setOverBool] = useState<boolean>(false);
+    const [overTitle, setOverTitle] = useState("");
+    const [overText, setOvertText] = useState("");
     const [isCopied, setIsCopied] = useState(false);
     const [playerHouses, setPlayerHouses] = useState<string[]>([]);
     const [inProgress, setInProgress] = useState<boolean>(false);
     const [playerTurn, setPlayerTurn] = useState<string>("");
-    const { provider, account, connectWallet, disconnectWallet,contract,signer } = useWallet();
+   // const { provider, account, connectWallet, disconnectWallet,contract,signer } = useWallet();
+
+   const { contract,account } = useAppContext()
 
 
  
@@ -147,18 +153,30 @@ const Canvas:React.FC<CanvasProps> = ({ players, room,username,player_identity,c
         //   console.log('meshes',meshes)
         // })
 
-        const registerWin = async(winId:string,winTrace:string,opponent_address:string,player_username:string) =>{
+        const registerWin = async() =>{
 
-            if (contract){
-              const transaction = await contract.recordWin(winId, winTrace,opponent_address,player_username);
-              await transaction.wait();
-              
+          if (contract) {
+            const amount = (capturedSpheres.length*0.01)
+            const calldata = [amount]
+            const mycall = contract.populate("add_to_list", calldata)
+            try {
+              const res = await contract.add_to_list(mycall.calldata)
+              const player = player_identity === 'player-1' ? playersStates['player-1'] : playersStates['player-2']
+         
+              setOverBool(true);
+              setOverTitle(`${player.username} you have Won!`);
+              setOvertText(`You have been allocated ${capturedSpheres.length*0.01} Tokens`);
 
+            } catch (e) {
+              const player = player_identity === 'player-1' ? playersStates['player-1'] : playersStates['player-2']
+              setOverBool(true);
+              setOverTitle(`${player.username} you have Won!`);
+              setOvertText(`You have been allocated ${capturedSpheres.length*0.01} Tokens`);
             }
+          }
 
         }
   
-        
         
         const loadModels = async (modelName:string) => {
           try {
@@ -799,7 +817,7 @@ const Canvas:React.FC<CanvasProps> = ({ players, room,username,player_identity,c
                         const opponentAddress = ethers.utils.getAddress(opponent_address);
                         const player_username = username;
 
-                        registerWin(winId,winTrace,opponentAddress,player_username);
+                        registerWin();
 
                         console.log(" You are the winner!!!")
                       }
@@ -936,8 +954,7 @@ const Canvas:React.FC<CanvasProps> = ({ players, room,username,player_identity,c
         return () => {
           cleanup.then(cleanupFunction => cleanupFunction());
         };
-      }, [playerHouses]);
-
+      }, [playerHouses,overBool,setOverBool,overText,setOvertText,overTitle,setOverTitle]);
 
 
       
@@ -1074,6 +1091,17 @@ const Canvas:React.FC<CanvasProps> = ({ players, room,username,player_identity,c
         open={Boolean(over)}
         title={over}
         contentText={over}
+        handleContinue={() => {
+          socket.emit("closeRoom", { roomId: room });
+          if (cleanup) {
+            cleanup();
+        }
+        }}
+      />
+            <CustomDialog // Game Over CustomDialog
+        open={overBool}
+        title={overTitle}
+        contentText={overText}
         handleContinue={() => {
           socket.emit("closeRoom", { roomId: room });
           if (cleanup) {

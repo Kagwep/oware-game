@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/"  element={<HomePage />} />
         <Route path="/play" element={<Game />} />
-        <Route path="/profiles" element={<ProfilesPage />} />
+        <Route path="/claim-token" element={<ProfilesPage />} />
       </Routes>
     </BrowserRouter>
     </>
