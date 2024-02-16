@@ -15,7 +15,3 @@ mod utils {
     mod utils;
 }
 
-
-mod config {
-    mod config;
-}

@@ -15,3 +15,9 @@ Our project focuses on implementing an AI agent for playing Oware, a traditional
 3. **Orion:** This library enables formal verification of smart contracts written in the Cairo language. We leverage Orion to verify the logic and behavior of our Oware agent's decision-making algorithms.
 4. **Proving Aspect:** We use Giza and Orion together to formally prove the correctness and reliability of our Oware agent's decision-making algorithms. This verification ensures the agent behaves as expected and adheres to Oware gameplay rules.
 
+### Giza Actions 
+
+ `unverifiable_inference.py` is a giza action that helps in Executing Unverifiable Inference with the  GizaModel and ONNX
+
+ `oware_proof.py` Executes a Verifiable Inference with GizaModel and ONNX
+    

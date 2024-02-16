@@ -3,7 +3,7 @@
 ![Oware](https://res.cloudinary.com/duybctvku/image/upload/v1706537308/oware1_bqkmyd.png)
 
 ## About Oware
-LIVE LINK: https://oware.vercel.app/
+LIVE LINK: https://oware-game.vercel.app/
 
 Oware is a strategic board game where each player is assigned six houses arranged in a circular pattern. Additionally, there is a score house at the the end for each player. The game employs a total of 48 beads, initially distributing four beads in each of the twelve houses.
 
@@ -11,15 +11,27 @@ The main goal of the game is for players to strategically navigate their beads a
 
 The  score houses acts as the destination for accumulated beads, while the six houses on each player's side serve as the playing field. A player wins after successfuly capturing 25 beads or more. It ends in a draw if both players capture 24. The win traces which can be verified that such movews can lead to a win are stored on Areon network and the players recieve redeamable nft tokens.
 
-## Features
+# Features
 
-- **Smart Contracts with Dojo**: The game logic is implemented using dojo provable game engine.
+## Blockchain integration:
 
-- **Giza Orion**: Framework dedicated to Provable Machine Learning. It provides essential components and a new ONNX runtime for building our Provable AI Oware Agent.
+- **Smart Contracts with Dojo:** The core game logic resides on secure, transparent smart contracts powered by the Dojo provable game engine. This ensures fair and verifiable gameplay on the blockchain.
 
-- **3D Visualization with Babylon.js and Blender**: The Oware world with 3D visualization powered by Babylon.js. The models are created using Blender, ensuring a visually appealing and engaging gaming experience.
+- **Giza - Orion:** This dedicated framework for Provable Machine Learning provides crucial components and an ONNX runtime for building an AI Oware agent, enabling a challenging and evolving opponent.
 
-- **OWR Token**: Oware introduces the OWR token, a digital asset within the game. Players can earn and trade OWR tokens as rewards for their achievements.
+## Immersive Experience:
+
+- **3D Visualization with Babylon.js and Blender:** Immerse yourself in the world of Oware with stunning 3D visuals powered by Babylon.js. Models crafted in Blender bring the game to life, enhancing your gaming experience.
+
+- **Multi-wallet compatibility:** Access the game using your preferred wallet:
+  - Argen: A user-friendly, non-custodial wallet for seamless tokens management.
+
+  - Braavos: A powerful and versatile platform for diverse blockchain interactions.
+
+## OWR Token:
+
+- **Earn and trade:** Oware introduces the OWR token, a digital asset earned through in-game achievements and tradable. This adds a layer of strategic gameplay and potential rewards.
+
 
 ## Development Setup
 
@@ -118,4 +130,3 @@ Pull requests should target the develop branch. Follow these steps:
 
 ## Contact Information
 - Peter: kagwepeter07@gmail.com [github](https://github.com/Kagwep)
-- Ted: ogolated00@gmail.com [github](https://github.com/Ted1166)
