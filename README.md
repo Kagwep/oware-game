@@ -80,10 +80,16 @@ Commence Gameplay:
 - Dojo
 - Giza Orion
 - Argent
-- Bravos
+- Braavos
 - Babylon.js
 - Blender
 - OWR
+
+## Bounties 
+- Dojo
+- Giza Tech
+- Argent
+- Braavos
 
 ## Contributing
 Contributions to Oware smart contract are welcome! Here are some ways you can help:
